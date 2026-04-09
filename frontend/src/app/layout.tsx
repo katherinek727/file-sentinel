@@ -1,29 +1,19 @@
 import type { Metadata } from "next";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from "react-bootstrap";
+import "./globals.css";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: 'Тестовое задание Fullstack',
-    description: 'Тестовое задание Fullstack',
-  };
-}
+export const metadata: Metadata = {
+  title: "File Sentinel",
+  description: "File upload, threat scanning, and alert management",
+};
 
-export default async function RootLayout({
-  children
-}: Readonly<{
+export default function RootLayout({
+  children,
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang='ru'>
-      <head>
-        <link rel="icon" href="/public/favicon.ico" sizes="any" />
-      </head>
-      <body>
-        <Container fluid className='p-0'>
-            {children}
-        </Container>
-      </body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   );
 }
