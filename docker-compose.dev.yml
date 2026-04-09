@@ -1,7 +1,7 @@
 services:
   backend:
     build: ./backend
-    command: uvicorn src.app:app --host 0.0.0.0 --reload --port 8000
+    command: uvicorn src.main:app --host 0.0.0.0 --reload --port 8000
     container_name: backend
     volumes:
       - ./backend:/backend
@@ -25,7 +25,7 @@ services:
     image: postgres:latest
     container_name: backend-db
     ports:
-      - "5433:5433"
+      - "5433:5432"
     env_file: ".env.dev"
     volumes:
       - backend-db-volume:/var/lib/postgresql
