@@ -1,13 +1,27 @@
-# Python-generated files
+# Python
 __pycache__/
 *.py[oc]
 build/
 dist/
 wheels/
 *.egg-info
-
-# Virtual environments
 .venv
-.idea
-**/.DS_Store
+
+# Storage
 backend/storage/*
+!backend/storage/.gitkeep
+
+# Environment
+.env
+.env.*.local
+!.env.*.example
+
+# Node
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# IDE
+.idea/
+.vscode/
+**/.DS_Store
