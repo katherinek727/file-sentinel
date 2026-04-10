@@ -9,7 +9,7 @@ import { UploadModal } from "@/components/UploadModal";
 import { Pagination } from "@/components/Pagination";
 import styles from "./page.module.css";
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 5;
 
 export default function Page() {
   const files = useFiles();
@@ -87,9 +87,7 @@ export default function Page() {
 
       <main className={styles.main}>
         {isError && (
-          <div className={styles.errorBanner}>
-            ⚠ {isError}
-          </div>
+          <div className={styles.errorBanner}>⚠ {isError}</div>
         )}
 
         <section className={styles.section}>
@@ -100,7 +98,7 @@ export default function Page() {
               {files.data && <span className={styles.count}>{files.data.total}</span>}
             </div>
           </div>
-          <div className={styles.card}>
+          <div className={`${styles.card} ${styles.filesCard}`}>
             {files.isLoading ? (
               <div className={styles.skeleton}>
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -128,7 +126,7 @@ export default function Page() {
               {alerts.data && <span className={styles.count}>{alerts.data.total}</span>}
             </div>
           </div>
-          <div className={styles.card}>
+          <div className={`${styles.card} ${styles.alertsCard}`}>
             {alerts.isLoading ? (
               <div className={styles.skeleton}>
                 {Array.from({ length: 4 }).map((_, i) => (

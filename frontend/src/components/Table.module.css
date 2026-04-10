@@ -1,4 +1,7 @@
-.wrapper { overflow-x: auto; }
+.wrapper {
+  overflow-x: auto;
+  flex: 1;
+}
 
 .table {
   width: 100%;

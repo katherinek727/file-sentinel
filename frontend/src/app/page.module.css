@@ -240,6 +240,16 @@
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.filesCard {
+  min-height: 340px;
+}
+
+.alertsCard {
+  min-height: 280px;
 }
 
 /* ── Skeleton ── */
