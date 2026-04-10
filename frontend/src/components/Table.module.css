@@ -27,6 +27,7 @@
   border-bottom: 1px solid var(--border-subtle);
   color: var(--text-secondary);
   vertical-align: middle;
+  text-align: center;
 }
 
 .table tbody tr:last-child td { border-bottom: none; }
@@ -43,6 +44,7 @@
   font-weight: 600;
   color: var(--text-primary);
   font-size: 13px;
+  text-align: left;
 }
 
 .sub {
