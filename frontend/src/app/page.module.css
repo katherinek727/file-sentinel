@@ -8,16 +8,17 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(15, 17, 23, 0.85);
-  backdrop-filter: blur(12px);
+  background: rgba(248, 249, 252, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
 
 .headerInner {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 32px;
-  height: 60px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,81 +30,163 @@
   gap: 10px;
 }
 
-.brandIcon {
-  font-size: 22px;
-  color: var(--accent);
-  line-height: 1;
+.brandLogo {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--accent) 0%, #7c3aed 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(79,70,229,0.35);
 }
 
 .brandName {
   font-size: 15px;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
 }
 
-.headerActions {
-  display: flex;
-  gap: 10px;
+.brandTag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: 2px 7px;
+  border-radius: 20px;
 }
 
+.headerActions { display: flex; gap: 8px; }
+
 .refreshBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   padding: 7px 16px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
-  background: transparent;
+  background: var(--bg-card);
   color: var(--text-secondary);
   font-size: 13px;
   font-weight: 500;
-  transition: background 0.15s, color 0.15s;
+  box-shadow: var(--shadow-xs);
+  transition: all 0.15s;
 }
 
 .refreshBtn:hover {
-  background: var(--bg-elevated);
-  color: var(--text-primary);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
 }
 
 .uploadBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   padding: 7px 18px;
   border-radius: var(--radius-sm);
   border: none;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent) 0%, #7c3aed 100%);
   color: #fff;
   font-size: 13px;
   font-weight: 600;
-  transition: background 0.15s;
+  box-shadow: 0 2px 8px rgba(79,70,229,0.30);
+  transition: all 0.15s;
 }
 
 .uploadBtn:hover {
-  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(79,70,229,0.40);
+}
+
+.uploadBtn:active { transform: translateY(0); }
+
+/* ── Hero strip ── */
+.hero {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+  padding: 40px 32px;
+}
+
+.heroInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.heroText h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.heroText p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+}
+
+.heroStats {
+  display: flex;
+  gap: 24px;
+}
+
+.heroStat {
+  text-align: center;
+}
+
+.heroStat strong {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.heroStat span {
+  font-size: 11px;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
 }
 
 /* ── Main ── */
 .main {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 32px;
+  padding: 36px 32px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
 }
 
 /* ── Error ── */
 .errorBanner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 12px 16px;
   border-radius: var(--radius);
   background: var(--red-dim);
-  border: 1px solid var(--red);
+  border: 1px solid #fca5a5;
   color: var(--red);
   font-size: 13px;
+  font-weight: 500;
 }
 
 /* ── Section ── */
-.section {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
+.section { display: flex; flex-direction: column; gap: 12px; }
 
 .sectionHeader {
   display: flex;
@@ -111,37 +194,43 @@
   justify-content: space-between;
 }
 
-.sectionTitle {
+.sectionLeft { display: flex; align-items: center; gap: 10px; }
+
+.sectionIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.sectionIcon.files {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.sectionIcon.alerts {
+  background: var(--red-dim);
+  color: var(--red);
+}
+
+.sectionTitle {
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-}
-
-.sectionDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-  flex-shrink: 0;
-}
-
-.sectionDot[data-color="red"] {
-  background: var(--red);
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
 .count {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   color: var(--text-muted);
   background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 2px 10px;
+  padding: 2px 9px;
 }
 
 /* ── Card ── */
@@ -149,29 +238,19 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
-  padding: 0 0 4px;
 }
 
 /* ── Skeleton ── */
-.skeleton {
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+.skeleton { padding: 20px; display: flex; flex-direction: column; gap: 10px; }
 
 .skeletonRow {
-  height: 40px;
+  height: 44px;
   border-radius: var(--radius-sm);
-  background: linear-gradient(
-    90deg,
-    var(--bg-elevated) 25%,
-    var(--bg-hover) 50%,
-    var(--bg-elevated) 75%
-  );
+  background: linear-gradient(90deg, var(--bg-elevated) 25%, var(--bg-hover) 50%, var(--bg-elevated) 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.4s infinite;
+  animation: shimmer 1.5s infinite;
 }
 
 @keyframes shimmer {
@@ -180,11 +259,7 @@
 }
 
 @media (max-width: 768px) {
-  .headerInner,
-  .main {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .brandName { display: none; }
+  .headerInner, .main, .hero { padding-left: 16px; padding-right: 16px; }
+  .brandTag, .heroStats { display: none; }
+  .hero { padding-top: 28px; padding-bottom: 28px; }
 }

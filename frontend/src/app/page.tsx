@@ -39,43 +39,51 @@ export default function Page() {
     await loadAlerts(alertsPage);
   }
 
-  function handleFilesPage(page: number) {
-    setFilesPage(page);
-  }
-
-  function handleAlertsPage(page: number) {
-    setAlertsPage(page);
-  }
-
   const isError = files.error ?? alerts.error;
+  const fileCount = files.data?.total ?? 0;
+  const alertCount = alerts.data?.total ?? 0;
 
   return (
     <div className={styles.root}>
       <header className={styles.header}>
         <div className={styles.headerInner}>
           <div className={styles.brand}>
-            <span className={styles.brandIcon}>⬡</span>
+            <div className={styles.brandLogo}>⬡</div>
             <span className={styles.brandName}>File Sentinel</span>
+            <span className={styles.brandTag}>v1.0</span>
           </div>
           <div className={styles.headerActions}>
             <button
               className={styles.refreshBtn}
-              onClick={() => {
-                void loadFiles(filesPage);
-                void loadAlerts(alertsPage);
-              }}
+              onClick={() => { void loadFiles(filesPage); void loadAlerts(alertsPage); }}
             >
               ↻ Refresh
             </button>
-            <button
-              className={styles.uploadBtn}
-              onClick={() => setShowModal(true)}
-            >
+            <button className={styles.uploadBtn} onClick={() => setShowModal(true)}>
               + Upload File
             </button>
           </div>
         </div>
       </header>
+
+      <div className={styles.hero}>
+        <div className={styles.heroInner}>
+          <div className={styles.heroText}>
+            <h1>File Management Dashboard</h1>
+            <p>Upload, scan, and monitor your files in real time</p>
+          </div>
+          <div className={styles.heroStats}>
+            <div className={styles.heroStat}>
+              <strong>{fileCount}</strong>
+              <span>Total Files</span>
+            </div>
+            <div className={styles.heroStat}>
+              <strong>{alertCount}</strong>
+              <span>Alerts</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <main className={styles.main}>
         {isError && (
@@ -86,15 +94,12 @@ export default function Page() {
 
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
-            <div className={styles.sectionTitle}>
-              <span className={styles.sectionDot} data-color="accent" />
-              Files
+            <div className={styles.sectionLeft}>
+              <div className={`${styles.sectionIcon} ${styles.files}`}>📄</div>
+              <span className={styles.sectionTitle}>Files</span>
+              {files.data && <span className={styles.count}>{files.data.total}</span>}
             </div>
-            {files.data && (
-              <span className={styles.count}>{files.data.total}</span>
-            )}
           </div>
-
           <div className={styles.card}>
             {files.isLoading ? (
               <div className={styles.skeleton}>
@@ -108,7 +113,7 @@ export default function Page() {
                 <Pagination
                   page={filesPage}
                   totalPages={files.data?.total_pages ?? 1}
-                  onPageChange={handleFilesPage}
+                  onPageChange={setFilesPage}
                 />
               </>
             )}
@@ -117,15 +122,12 @@ export default function Page() {
 
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
-            <div className={styles.sectionTitle}>
-              <span className={styles.sectionDot} data-color="red" />
-              Alerts
+            <div className={styles.sectionLeft}>
+              <div className={`${styles.sectionIcon} ${styles.alerts}`}>🔔</div>
+              <span className={styles.sectionTitle}>Alerts</span>
+              {alerts.data && <span className={styles.count}>{alerts.data.total}</span>}
             </div>
-            {alerts.data && (
-              <span className={styles.count}>{alerts.data.total}</span>
-            )}
           </div>
-
           <div className={styles.card}>
             {alerts.isLoading ? (
               <div className={styles.skeleton}>
@@ -139,7 +141,7 @@ export default function Page() {
                 <Pagination
                   page={alertsPage}
                   totalPages={alerts.data?.total_pages ?? 1}
-                  onPageChange={handleAlertsPage}
+                  onPageChange={setAlertsPage}
                 />
               </>
             )}

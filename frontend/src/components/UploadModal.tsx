@@ -19,7 +19,6 @@ export function UploadModal({ onClose, onSubmit }: Props) {
     e.preventDefault();
     if (!title.trim()) { setError("Title is required"); return; }
     if (!file) { setError("Please select a file"); return; }
-
     setIsSubmitting(true);
     setError(null);
     try {
@@ -36,7 +35,13 @@ export function UploadModal({ onClose, onSubmit }: Props) {
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Upload File</h2>
+          <div className={styles.headerLeft}>
+            <div className={styles.headerIcon}>📁</div>
+            <div>
+              <div className={styles.title}>Upload File</div>
+              <div className={styles.subtitle}>Add a new file to the vault</div>
+            </div>
+          </div>
           <button className={styles.close} onClick={onClose} aria-label="Close">✕</button>
         </div>
 
@@ -54,14 +59,17 @@ export function UploadModal({ onClose, onSubmit }: Props) {
 
           <div className={styles.field}>
             <label className={styles.label}>File</label>
-            <div
-              className={styles.dropzone}
-              onClick={() => inputRef.current?.click()}
-            >
+            <div className={styles.dropzone} onClick={() => inputRef.current?.click()}>
               {file ? (
-                <span className={styles.fileName}>{file.name}</span>
+                <span className={styles.fileName}>📎 {file.name}</span>
               ) : (
-                <span className={styles.dropHint}>Click to browse or drag & drop</span>
+                <>
+                  <div className={styles.dropIcon}>☁️</div>
+                  <div className={styles.dropHint}>
+                    <strong>Click to browse</strong> or drag & drop<br />
+                    Any file type supported
+                  </div>
+                </>
               )}
               <input
                 ref={inputRef}
@@ -72,14 +80,14 @@ export function UploadModal({ onClose, onSubmit }: Props) {
             </div>
           </div>
 
-          {error && <p className={styles.error}>{error}</p>}
+          {error && <p className={styles.error}>⚠ {error}</p>}
+
+          <div className={styles.divider} />
 
           <div className={styles.actions}>
-            <button type="button" className={styles.cancelBtn} onClick={onClose}>
-              Cancel
-            </button>
+            <button type="button" className={styles.cancelBtn} onClick={onClose}>Cancel</button>
             <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
-              {isSubmitting ? "Uploading…" : "Upload"}
+              {isSubmitting ? "Uploading…" : "Upload File"}
             </button>
           </div>
         </form>

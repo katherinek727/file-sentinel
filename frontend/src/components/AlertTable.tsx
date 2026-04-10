@@ -24,7 +24,12 @@ interface Props {
 
 export function AlertTable({ alerts }: Props) {
   if (alerts.length === 0) {
-    return <p className={styles.empty}>No alerts yet</p>;
+    return (
+      <div className={styles.empty}>
+        <div className={styles.emptyIcon}>🔔</div>
+        <div>No alerts yet</div>
+      </div>
+    );
   }
 
   return (

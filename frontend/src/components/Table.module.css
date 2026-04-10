@@ -1,6 +1,4 @@
-.wrapper {
-  overflow-x: auto;
-}
+.wrapper { overflow-x: auto; }
 
 .table {
   width: 100%;
@@ -9,11 +7,12 @@
 }
 
 .table thead tr {
+  background: var(--bg-elevated);
   border-bottom: 1px solid var(--border);
 }
 
 .table th {
-  padding: 10px 14px;
+  padding: 11px 16px;
   text-align: left;
   font-size: 11px;
   font-weight: 600;
@@ -24,24 +23,26 @@
 }
 
 .table td {
-  padding: 12px 14px;
+  padding: 13px 16px;
   border-bottom: 1px solid var(--border-subtle);
   color: var(--text-secondary);
   vertical-align: middle;
 }
 
-.table tbody tr:last-child td {
-  border-bottom: none;
+.table tbody tr:last-child td { border-bottom: none; }
+
+.table tbody tr {
+  transition: background 0.1s;
 }
 
 .table tbody tr:hover td {
-  background: var(--bg-hover);
+  background: var(--bg-elevated);
 }
 
 .title {
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 2px;
+  font-size: 13px;
 }
 
 .sub {
@@ -49,41 +50,48 @@
   color: var(--text-muted);
   font-family: var(--font-mono);
   margin-top: 2px;
+  letter-spacing: -0.01em;
 }
 
 .mono {
   font-family: var(--font-mono);
   font-size: 12px;
+  color: var(--text-secondary);
 }
 
-.scanCell {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
+.scanCell { display: flex; flex-direction: column; gap: 4px; }
 
 .downloadBtn {
   display: inline-flex;
   align-items: center;
+  gap: 5px;
   padding: 5px 12px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
-  background: transparent;
+  background: var(--bg-card);
   color: var(--accent);
   font-size: 12px;
   font-weight: 500;
-  transition: background 0.15s, border-color 0.15s;
+  box-shadow: var(--shadow-xs);
+  transition: all 0.15s;
   white-space: nowrap;
 }
 
 .downloadBtn:hover {
   background: var(--accent-dim);
   border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
 }
 
 .empty {
-  padding: 40px 0;
+  padding: 56px 0;
   text-align: center;
   color: var(--text-muted);
   font-size: 13px;
+}
+
+.emptyIcon {
+  font-size: 32px;
+  margin-bottom: 10px;
+  opacity: 0.4;
 }

@@ -35,7 +35,12 @@ interface Props {
 
 export function FileTable({ files }: Props) {
   if (files.length === 0) {
-    return <p className={styles.empty}>No files uploaded yet</p>;
+    return (
+      <div className={styles.empty}>
+        <div className={styles.emptyIcon}>📂</div>
+        <div>No files uploaded yet</div>
+      </div>
+    );
   }
 
   return (
