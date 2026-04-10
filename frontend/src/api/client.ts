@@ -11,18 +11,28 @@ export class ApiError extends Error {
 }
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const isFormData = init?.body instanceof FormData;
+
   const response = await fetch(`${BASE_URL}${path}`, {
     ...init,
-    headers: {
-      "Content-Type": "application/json",
-      ...init?.headers,
-    },
+    headers: isFormData
+      ? undefined  // let the browser set Content-Type + boundary automatically
+      : {
+          "Content-Type": "application/json",
+          ...init?.headers,
+        },
   });
 
   if (!response.ok) {
     const detail = await response
       .json()
-      .then((d) => d?.detail ?? response.statusText)
+      .then((d) => {
+        if (typeof d?.detail === "string") return d.detail;
+        if (Array.isArray(d?.detail)) {
+          return d.detail.map((e: { msg?: string }) => e.msg ?? String(e)).join(", ");
+        }
+        return response.statusText;
+      })
       .catch(() => response.statusText);
     throw new ApiError(response.status, detail);
   }
@@ -47,7 +57,6 @@ export const apiClient = {
     request<T>(path, {
       method: "POST",
       body: formData,
-      headers: {},
     }),
 
   patch: <T>(path: string, body: unknown) =>
